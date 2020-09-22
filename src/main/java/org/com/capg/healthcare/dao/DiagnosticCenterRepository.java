@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DiagnosticCenterRepository extends JpaRepository<DiagnosticCenter, Integer>{
+public interface DiagnosticCenterRepository extends JpaRepository<DiagnosticCenter, String>{
 
 	public DiagnosticCenter getByCenterName(String centerName);
 

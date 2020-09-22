@@ -6,7 +6,7 @@ package org.com.capg.healthcare.exception;
 -Description              :     CenterNotFoundException class with constructor
 *********************************************************************************/
 
-public class CenterNotFoundException extends RuntimeException{
+public class CenterNotFoundException extends Exception{
 
 	public CenterNotFoundException(String errorMsg) {
 		super(errorMsg);

@@ -4,12 +4,13 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
+import org.com.capg.healthcare.dto.SuccessMessage;
 import org.com.capg.healthcare.entity.DiagnosticCenter;
 import org.com.capg.healthcare.entity.Test;
-import org.com.capg.healthcare.exception.CenterNameAlreadyExistException;
+import org.com.capg.healthcare.exception.NameAlreadyExistException;
 import org.com.capg.healthcare.exception.CenterNotFoundException;
-import org.com.capg.healthcare.service.DiagnosticCenterService;
-
+import org.com.capg.healthcare.service.DiagnosticCenterServiceImpl;
+import org.com.capg.healthcare.util.TestConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,37 +30,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class DiagnosticCenterController {
 	
 	@Autowired
-	DiagnosticCenterService centerService;
+	private DiagnosticCenterServiceImpl centerService;
 	
-	@PostMapping("/addcenter")
-	@ExceptionHandler(CenterNameAlreadyExistException.class)
-	public DiagnosticCenter addDiagnosticCenter(@RequestBody DiagnosticCenter diagnosticCenter) {
-		return centerService.saveDiagnosticCenter(diagnosticCenter);
+	@GetMapping(TestConstants.ADD_CENTER_URL)
+	public SuccessMessage addDiagnosticCenter(@RequestBody DiagnosticCenter diagnosticCenter) throws NameAlreadyExistException{
+		return new SuccessMessage(centerService.saveDiagnosticCenter(diagnosticCenter));
 	}
 	
 	
-	@DeleteMapping("/deletecenter/{centerId}")
-	public String deleteCenter(@PathVariable(value = "centerId") Integer centerId) throws CenterNotFoundException {
+	@GetMapping(TestConstants.DELETE_CENTER_URL)
+	public SuccessMessage removeCenter(@PathVariable(value = "centerId") String centerId) throws CenterNotFoundException {
 
-		return centerService.deleteDiagnosticCenter(centerId);
+		return new SuccessMessage(centerService.removeDiagnosticCenter(centerId));
 	}
 	
-	@PutMapping("/updatecenter")
-	public ResponseEntity<DiagnosticCenter> updateDiagnosticCenter( @RequestBody DiagnosticCenter diagnosticCenter)
-			throws CenterNotFoundException {
-
-		return centerService.updateDiagnosticCenter(diagnosticCenter);
-	}
-	
-	@GetMapping("/allcenters")
+	@GetMapping(TestConstants.VIEW_ALL_CENTERS_URL)
 	public List<DiagnosticCenter> getAllCenters(BigInteger centerId) {
 
 		return centerService.getAllCenters(centerId);
 
 	}
 	
-	@GetMapping("/getcenter/centerid/{centerId}")
-	public ResponseEntity<DiagnosticCenter> getDiagnosticCenter(@PathVariable Integer centerId)
+	@GetMapping(TestConstants.VIEW_CENTER_BY_CENTERID_URL)
+	public ResponseEntity<DiagnosticCenter> getDiagnosticCenter(@PathVariable String centerId)throws CenterNotFoundException
 	{
 		return centerService.getCenterById(centerId);
 	}

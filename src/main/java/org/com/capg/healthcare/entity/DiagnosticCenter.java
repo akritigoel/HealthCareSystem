@@ -1,32 +1,43 @@
 package org.com.capg.healthcare.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+/**************************************************************************************
+-Author                   :     AKRITI
+-Created/Modified Date    :     20-09-2020
+-Description              :     DiagnosticCenter Entity Class
+***************************************************************************************/
 
 @Entity
+@Table(name = "diagnostic_center")
 public class DiagnosticCenter {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int centerId;
 	
+	@Id
+	@Column(name = "center_id", length = 25)
+	private String centerId;
+	
+	@Column(name = "center_name" , length = 25)
 	private String centerName;
+	
+	@Column(name = "center_address" , length = 50) 
 	private String centerAddress;
+	
+	@Column(name = "contact_number" , length = 10 )
 	private String contactNumber;
 	
 	
-	
-	
-	
-	public int getDiagnosticCenterId() {
+	public String getCenterId() {
 		return centerId;
 	}
-	public void setDiagnosticCenterId(int diagnosticCenterId) {
-		this.centerId = diagnosticCenterId;
+
+	public void setCenterId(String centerId) {
+		this.centerId = centerId;
 	}
-	
+
 	public String getCenterName() {
 		return centerName;
 	}
@@ -54,5 +65,4 @@ public class DiagnosticCenter {
 		return "DiagnosticCentre [diagnosticCentreId=" + centerId + ", centreName=" + 
 	centerName + ", centreAddress=" + centerAddress + "]";
 	}
-	
 }
