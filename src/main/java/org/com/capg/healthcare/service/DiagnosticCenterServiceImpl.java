@@ -54,7 +54,7 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService {
 	}
 	
 	/********************************************************************************************
-	-Function Name            :     deleteCenter
+	-Function Name            :     removeDiagnosticCenter
 	-Description              :     delete Center from the Diagnostic Center Database Table
 	-Input Parameters         :     Diagnostic Center Id
 	-Return Type              :     String showing whether deleted or not
