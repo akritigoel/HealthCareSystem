@@ -86,7 +86,7 @@ public class DiagnosticCenterServiceImpl implements DiagnosticCenterService {
 	*********************************************************************************************/
 	
 	@Override
-	public List<DiagnosticCenter> getAllCenters(BigInteger centerId){
+	public List<DiagnosticCenter> getAllCenters(String centerId){
     	return centerRepo.findAll();   	
     }
  
