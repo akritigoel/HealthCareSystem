@@ -45,7 +45,7 @@ public class DiagnosticCenterController {
 	}
 	
 	@GetMapping(TestConstants.VIEW_ALL_CENTERS_URL)
-	public List<DiagnosticCenter> getAllCenters(BigInteger centerId) {
+	public List<DiagnosticCenter> getAllCenters(String centerId) {
 
 		return centerService.getAllCenters(centerId);
 
