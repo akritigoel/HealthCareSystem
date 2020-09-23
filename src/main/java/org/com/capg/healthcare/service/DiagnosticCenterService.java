@@ -14,7 +14,7 @@ public interface DiagnosticCenterService {
 	
 	public String removeDiagnosticCenter(String centerId) throws CenterNotFoundException;
 	
-	public List<DiagnosticCenter> getAllCenters(BigInteger centerId);
+	public List<DiagnosticCenter> getAllCenters(String centerId);
 	
 	public ResponseEntity<DiagnosticCenter> getCenterById(String centerId) throws CenterNotFoundException;
 }
